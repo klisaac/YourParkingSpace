@@ -1,0 +1,10 @@
+DROP TABLE [User];
+DROP TABLE [TypeInfo];
+DROP TABLE [Sprite];
+DROP TABLE [Pokemon];
+DROP TABLE [__EFMigrationsHistory];
+DROP TABLE [NamedApiResource];
+DROP TABLE [AbilityInfo];
+
+dotnet ef migrations add InitialCreate --startup-project Pokemon.Api --project  Pokemon.Infrastructure --context PokemonDbContext
+
