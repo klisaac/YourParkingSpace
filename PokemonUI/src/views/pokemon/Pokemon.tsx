@@ -12,8 +12,10 @@ import AlertMessage from "../../common/components/AlertMessage";
 import Header from "../../common/components/Header";
 import TextBoxSearch from "../../common/components/TextboxSearch";
 import Spinner from "../../common/components/Spinner";
+import spriteBadge from "../../helpers/SpriteBadge";
 import * as api from "../../app-config/api-urls";
 import * as config from "../../app-config/general-config";
+
 
 const Pokemon = () => {
   let history = useHistory();
@@ -63,24 +65,24 @@ const Pokemon = () => {
         accessor: "height",
       },
       {
-        Header: "Back Default",
-        accessor: "backDefault",
-        Cell: ({ value }) => wrapCell(value),
-      },
-      {
-        Header: "Back Shiny",
-        accessor: "backShiny",
-        Cell: ({ value }) => wrapCell(value),
-      },
-      {
         Header: "Front Default",
-        accessor: "frontDefault",
-        Cell: ({ value }) => wrapCell(value),
+        accessor: (i: { frontDefault: string }) => spriteBadge(i.frontDefault),
+        disableSortBy: true
       },
       {
         Header: "Front Shiny",
-        accessor: "frontShiny",
-        Cell: ({ value }) => wrapCell(value),
+        accessor: (i: { frontShiny: string }) => spriteBadge(i.frontShiny),
+        disableSortBy: true
+      },
+      {
+        Header: "Back Default",
+        accessor: (i: { backDefault: string }) => spriteBadge(i.backDefault),
+        disableSortBy: true
+      },
+      {
+        Header: "Back Shiny",
+        accessor: (i: { backShiny: string }) => spriteBadge(i.backShiny),
+        disableSortBy: true
       },
     ],
     []
