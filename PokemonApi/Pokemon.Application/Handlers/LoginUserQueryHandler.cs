@@ -4,7 +4,7 @@ using System.Text;
 using MediatR;
 using Microsoft.IdentityModel.Tokens;
 using Pokemon.Application.Queries;
-using Pokemon.Application.Response;
+using Pokemon.Application.Responses;
 using Pokemon.Core.Configuration;
 using Pokemon.Core.Helpers;
 using Pokemon.Core.Logging;

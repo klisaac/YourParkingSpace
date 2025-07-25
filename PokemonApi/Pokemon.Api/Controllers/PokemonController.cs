@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pokemon.Application.Commands;
 using Pokemon.Application.Queries;
-using Pokemon.Application.Response;
+using Pokemon.Application.Responses;
 using Pokemon.Core.Pagination;
 
 namespace Pokemon.Api.Controllers

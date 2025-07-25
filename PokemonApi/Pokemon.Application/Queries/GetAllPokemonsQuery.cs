@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Pokemon.Application.Response;
+using Pokemon.Application.Responses;
 using Pokemon.Core.Pagination;
 
 namespace Pokemon.Application.Queries

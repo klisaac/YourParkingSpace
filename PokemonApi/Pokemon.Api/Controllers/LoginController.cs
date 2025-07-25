@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pokemon.Application.Queries;
-using Pokemon.Application.Response;
+using Pokemon.Application.Responses;
 
 namespace Pokemon.Api.Controllers
 {

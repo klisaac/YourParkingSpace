@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using Pokemon.Application.Queries;
-using Pokemon.Application.Response;
+using Pokemon.Application.Responses;
 using Pokemon.Core.Pagination;
 using Pokemon.Core.Repositories.PokemonDb;
 using Pokemon.Core.Repositories.PokemonExternalApi;

@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Pokemon.Application.Response;
+using Pokemon.Application.Responses;
 
 namespace Pokemon.Application.Queries
 {
