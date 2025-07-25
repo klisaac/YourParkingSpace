@@ -20,11 +20,6 @@ const Pokemon = () => {
   const urlRoot = "/pokemon";
   let param = new URLSearchParams(useLocation().search);
 
-  // const getStatusUrl = () => {
-  //   const status = param.get("siteStatusId") !== null ? Number(param.get("siteStatusId")) : 0;
-  //   return status > 0 ? `siteStatusId=${status}` : "";
-  // };
-
   // Hooks.
   const { apiRequest, isProcessing } = useApiRequest();
   const {

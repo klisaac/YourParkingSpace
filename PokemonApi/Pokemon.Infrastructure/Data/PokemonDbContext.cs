@@ -6,7 +6,7 @@ namespace Pokemon.Infrastructure.Data
 {
     public sealed class PokemonDbContext : DbContext
     {
-        private IDbContextTransaction _transaction;
+        private IDbContextTransaction? _transaction;
 
         public DbSet<AbilityInfoDbEntity> AbilityInfos { get; set; }
         public DbSet<NamedApiResourceDbEntity> NamedApiResources { get; set; }
@@ -39,21 +39,21 @@ namespace Pokemon.Infrastructure.Data
             modelBuilder.Entity<UserDbEntity>(PokemonModelBuilder.ConfigureUser);
         }
 
-        public void BeginTransaction()
+        public async Task BeginTransaction()
         {
-            _transaction = Database.BeginTransaction();
+            _transaction = _transaction ?? await Database.BeginTransactionAsync();
         }
 
-        public void Commit()
+        public async Task Commit()
         {
-            SaveChanges();
-            _transaction.Commit();
+            await SaveChangesAsync();
+            await _transaction!.CommitAsync();
         }
 
-        public void Rollback()
+        public async Task Rollback()
         {
-            _transaction.Rollback();
-            _transaction.Dispose();
+            await _transaction!.RollbackAsync();
+            await _transaction.DisposeAsync();
         }
     }
 }

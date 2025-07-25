@@ -3,8 +3,8 @@ using System.Security.Claims;
 using System.Text;
 using MediatR;
 using Microsoft.IdentityModel.Tokens;
-using Pokemon.Application.Dto;
 using Pokemon.Application.Queries;
+using Pokemon.Application.Response;
 using Pokemon.Core.Configuration;
 using Pokemon.Core.Helpers;
 using Pokemon.Core.Logging;
@@ -14,12 +14,12 @@ using Pokemon.Core.Specifications;
 namespace Pokemon.Application.Handlers
 {
     public class LoginUserQueryHandler(IBaseRepository baseRepository, IPokemonLogger<LoginUserQueryHandler> logger)
-        : IRequestHandler<LoginUserQuery, AuthenticationDto?>
+        : IRequestHandler<LoginUserQuery, AuthenticationResponse?>
     {
         private readonly IBaseRepository _baseRepository = baseRepository ?? throw new ArgumentNullException(nameof(baseRepository));
         private readonly IPokemonLogger<LoginUserQueryHandler> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
-        public async Task<AuthenticationDto?> Handle(LoginUserQuery request, CancellationToken cancellationToken)
+        public async Task<AuthenticationResponse?> Handle(LoginUserQuery request, CancellationToken cancellationToken)
         {
             var user = await _baseRepository.GetSingleAsync(new UserSpecification(request.UserName));
 
@@ -31,7 +31,7 @@ namespace Pokemon.Application.Handlers
             }
             else
             {
-                return new AuthenticationDto() { BearerToken = GenerateJwtTokenAsync(request.UserName) };
+                return new AuthenticationResponse() { BearerToken = GenerateJwtTokenAsync(request.UserName) };
             }
         }
 

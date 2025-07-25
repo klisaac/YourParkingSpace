@@ -32,20 +32,20 @@ namespace Pokemon.Infrastructure.Repositories.PokemonDb
         }
         public IQueryable<T> GetAllByIncluding<T>(params Expression<Func<T, object>>[] includeProperties) where T : BaseEntity
         {
-            var query = pokemonDbContext.Set<T>().AsNoTracking();
+            var queryable = pokemonDbContext.Set<T>().AsNoTracking();
 
-            return includeProperties.Aggregate(query, (current, includeProperty) => current.Include(includeProperty));
+            return includeProperties.Aggregate(queryable, (current, includeProperty) => current.Include(includeProperty));
         }
 
         public IQueryable<T> GetAllByIncludingString<T>(Expression<Func<T, bool>>? predicate = null, Func<IQueryable<T>, IOrderedQueryable<T>>? orderBy = null, string? includeString = null) where T : BaseEntity
         {
-            var query = pokemonDbContext.Set<T>().AsNoTracking();
+            var queryable = pokemonDbContext.Set<T>().AsNoTracking();
 
-            if (!string.IsNullOrWhiteSpace(includeString)) query = query.Include(includeString);
+            if (!string.IsNullOrWhiteSpace(includeString)) queryable = queryable.Include(includeString);
 
-            if (predicate != null) query = query.Where(predicate);
+            if (predicate != null) queryable = queryable.Where(predicate);
 
-            return orderBy != null ? orderBy(query) : query;
+            return orderBy != null ? orderBy(queryable) : queryable;
         }
 
         public async Task<int> CountAsync<T>(ISpecification<T> spec) where T : BaseEntity
